@@ -220,9 +220,12 @@ html[data-theme="dracula"] {
     --slate-800: #282a36;
     --slate-900: #1e1f29;
 }
-</style>
 
-html[lang="fa"] body, html[lang="fa"] body *:not(.font-mono) {
+/* =============================================
+   استایل‌های اضافی (رفع پیام بغل صفحه)
+   ============================================= */
+html[lang="fa"] body,
+html[lang="fa"] body *:not(.font-mono) {
     font-family: 'Vazirmatn', sans-serif !important;
 }
 
@@ -233,45 +236,75 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Perfect form styling with excellent contrast for every theme */
-input[type="text"]:not(.login-input), input[type="password"]:not(.login-input), select, textarea {
+input[type="text"]:not(.login-input),
+input[type="password"]:not(.login-input),
+select,
+textarea {
     background-color: var(--slate-100) !important;
     color: var(--slate-900) !important;
     border-color: var(--slate-200) !important;
     transition: all 0.2s;
     border-radius: 0.75rem !important;
 }
-input[type="text"]:not(.login-input):focus, input[type="password"]:not(.login-input):focus, select:focus, textarea:focus {
+
+input[type="text"]:not(.login-input):focus,
+input[type="password"]:not(.login-input):focus,
+select:focus,
+textarea:focus {
     border-color: var(--color-primary) !important;
     box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
 }
-html.dark input[type="text"]:not(.login-input), html.dark input[type="password"]:not(.login-input), html.dark select, html.dark textarea {
+
+html.dark input[type="text"]:not(.login-input),
+html.dark input[type="password"]:not(.login-input),
+html.dark select,
+html.dark textarea {
     background-color: var(--slate-100) !important;
     color: var(--slate-300) !important;
     border-color: var(--slate-200) !important;
 }
+
 select option {
     background-color: var(--slate-50) !important;
     color: var(--slate-900) !important;
 }
+
 html.dark select option {
     background-color: var(--slate-100) !important;
     color: var(--slate-300) !important;
 }
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
-[data-accordion-content] { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+[data-accordion-content] {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
 .login-input {
     background-color: var(--color-bg-alt) !important;
     border-color: var(--color-border) !important;
     color: var(--color-text) !important;
 }
+
 .login-input:focus {
     border-color: var(--color-primary) !important;
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary) 20%, transparent) !important;
 }
+</style>
 </style></head>
   <body class="text-[var(--color-text)] h-[100dvh] flex flex-col md:flex-row overflow-hidden selection:bg-primary selection:text-white transition-colors duration-300 bg-[var(--color-bg)]">
 
