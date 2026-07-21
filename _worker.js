@@ -1,9 +1,5 @@
 import { connect } from "cloudflare:sockets";
 
-/*
- * Project Nahan (کلود ساب) - IoT Device Telemetry Gateway
- * Handles real-time binary streams from remote sensor nodes.
- */
 
 const CURRENT_VERSION = "2.9.4";
 
@@ -51,7 +47,7 @@ const SYSTEM_DEFAULTS = {
     cfWorkerName: "",
     isPaused: false,
     silentAlerts: false,
-    githubRepo: "itsyebekhe/nahan",
+    githubRepo: "TJX-VPN/Panel-files",
     nameStrategy: "default",
     namePrefix: "Core",
     tgBotLang: "fa",
@@ -497,7 +493,7 @@ export default {
 
             if (!isTelemetryStream) {
                 if (reqPath === routes.dash) {
-                    const dashboardUrl = env.DASHBOARD_URL || 'https://raw.githubusercontent.com/itsyebekhe/nahan/main/dashboard.html';
+                    const dashboardUrl = env.DASHBOARD_URL || 'https://raw.githubusercontent.com/TJX-VPN/Panel-files/refs/heads/main/dashboard.html';
                     try {
                         const resp = await fetch(dashboardUrl);
                         let html = await resp.text();
@@ -634,7 +630,7 @@ export default {
 
                     if (isRealBrowser && !isCustomUaAllowed) {
                         if (isValidUser) {
-                            const subscriptionUrl = env.SUBSCRIPTION_URL || 'https://raw.githubusercontent.com/itsyebekhe/nahan/main/subscription.html';
+                            const subscriptionUrl = env.SUBSCRIPTION_URL || 'https://raw.githubusercontent.com/TJX-VPN/Panel-files/refs/heads/main/subscription.html';
                             try {
                                 const resp = await fetch(subscriptionUrl);
                                 let html = await resp.text();
@@ -937,12 +933,12 @@ export default {
         try {
             await loadSysConfig(env, ctx);
             if (sysConfig.autoUpdate && sysConfig.cfAccountId && sysConfig.cfApiToken && sysConfig.cfWorkerName) {
-                const repo = (sysConfig.githubRepo || "itsyebekhe/nahan")
+                const repo = (sysConfig.githubRepo || "TJX-VPN/Panel-files")
                     .replace(/https?:\/\/github\.com\//, "")
                     .trim();
                 let remoteVer = null;
                 try {
-                    const res = await fetch(`https://raw.githubusercontent.com/${repo}/main/version`);
+                    const res = await fetch(`https://raw.githubusercontent.com/TJX-VPN/Panel-files/main/version`);
                     if (res.ok) {
                         remoteVer = (await res.text()).trim();
                     }
@@ -950,7 +946,7 @@ export default {
                 
                 if (remoteVer && cmpVersions(CURRENT_VERSION, remoteVer) < 0) {
                     try {
-                        const res = await fetch(`https://raw.githubusercontent.com/${repo}/main/_worker.js`);
+                        const res = await fetch(`https://raw.githubusercontent.com/TJX-VPN/Panel-files/main/_worker.js`);
                         if (!res.ok) throw new Error(`HTTP ${res.status}`);
                         let latestCode = await res.text();
                         const format = sysConfig.autoUpdateFormat || "normal";
@@ -1954,7 +1950,7 @@ async function handleUpdateApi(request, env, ctx) {
             let remoteVer = null;
             try {
                 const res = await fetch(
-                    `https://raw.githubusercontent.com/${repo}/main/version`,
+                    `https://raw.githubusercontent.com/TJX-VPN/Panel-files/main/version`,
                 );
                 if (res.ok) {
                     const txt = (await res.text()).trim();
@@ -1964,7 +1960,7 @@ async function handleUpdateApi(request, env, ctx) {
             if (!remoteVer) {
                 try {
                     const res = await fetch(
-                        `https://raw.githubusercontent.com/${repo}/main/_worker.js`,
+                        `https://raw.githubusercontent.com/TJX-VPN/Panel-files/main/_worker.js`,
                     );
                     if (res.ok) {
                         const code = await res.text();
@@ -7281,19 +7277,19 @@ async function fetchTemplates(env) {
     const repo = sysConfig.githubRepo || "itsyebekhe/nahan";
     if (!clashTemplate) {
         try {
-            let res = await fetch(`https://raw.githubusercontent.com/${repo}/main/clash.yml`);
+            let res = await fetch(`https://raw.githubusercontent.com/TJX-VPN/Panel-files/main/clash.yml`);
             if (res.ok) clashTemplate = await res.text();
         } catch(e) {}
     }
     if (!singboxTemplate) {
         try {
-            let res = await fetch(`https://raw.githubusercontent.com/${repo}/main/singbox.json`);
+            let res = await fetch(`https://raw.githubusercontent.com/TJX-VPN/Panel-files/main/singbox.json`);
             if (res.ok) singboxTemplate = await res.json();
         } catch(e) {}
     }
     if (!VTemplate) {
         try {
-            let res = await fetch(`https://raw.githubusercontent.com/${repo}/main/v.json`);
+            let res = await fetch(`https://raw.githubusercontent.com/TJX-VPN/Panel-files/main/v.json`);
             if (res.ok) VTemplate = await res.json();
         } catch(e) {}
     }
@@ -7682,7 +7678,7 @@ external-controller-cors:
     - "*"
   allow-private-network: true
 external-ui: ui
-external-ui-url: "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
+external-ui-url: "https://github.com/TJX-VPN/Panel-files/raw/refs/heads/main/metacubexd-gh-pages.zip"
 
 profile:
   store-selected: true
@@ -8214,7 +8210,7 @@ async function buildClashJsonProfile(
         },
         "external-ui": "ui",
         "external-ui-url":
-            "https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+            "https://github.com/TJX-VPN/Panel-files/raw/refs/heads/main/metacubexd-gh-pages.zip",
         profile: {
             "store-selected": true,
             "store-fake-ip": true,
@@ -8269,7 +8265,7 @@ async function buildClashJsonProfile(
                 behavior: "domain",
                 path: "./ruleset/category-ads-all.txt",
                 interval: 86400,
-                url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt",
+                url: "https://raw.githubusercontent.com/TJX-VPN/Panel-files/refs/heads/main/category-ads-all.txt",
             },
             ir: {
                 type: "http",
@@ -8277,7 +8273,7 @@ async function buildClashJsonProfile(
                 behavior: "domain",
                 path: "./ruleset/ir.txt",
                 interval: 86400,
-                url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt",
+                url: "https://raw.githubusercontent.com/TJX-VPN/Panel-files/refs/heads/main/ir.txt",
             },
             "ir-cidr": {
                 type: "http",
@@ -8285,7 +8281,7 @@ async function buildClashJsonProfile(
                 behavior: "ipcidr",
                 path: "./ruleset/ir-cidr.txt",
                 interval: 86400,
-                url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt",
+                url: "https://raw.githubusercontent.com/TJX-VPN/Panel-files/refs/heads/main/ircidr.txt",
             },
         },
         rules: [
@@ -8833,3 +8829,4 @@ async function buildSingBoxJsonProfile(hostName, targetSub = null, allowInsecure
         route: { rules: [] }
     };
 }
+
